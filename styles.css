@@ -19,7 +19,7 @@ body{
 }
 .right {
   margin-top: 50px;
-  width: 60%;
+  width: 50%;
   text-align: left;
 }
 
@@ -57,5 +57,8 @@ h6 {
   font-family: Avenir, Arial, Helvetica, sans-serif;
 }
 p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+li {
   font-family: Arial, Helvetica, sans-serif;
 }
