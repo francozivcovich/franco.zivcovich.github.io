@@ -15,13 +15,23 @@ body{
   padding: 10px;
 }
 .left {
+  /* margin-top: 50px;
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 40%; */
   margin-top: 50px;
-  width: 40%;
+  margin-left: 125px;
+  margin-right: 25px;
+  width: 35%;
 }
 .right {
-  margin-top: 50px;
+  /* margin-top: 50px;
   width: 50%;
+  text-align: left; */
+  margin-top: 50px;
+  width: 45%;
   text-align: left;
+  margin-right: 125px;
 }
 
 /* Clear floats after the columns */
