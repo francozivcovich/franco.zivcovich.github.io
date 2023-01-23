@@ -128,9 +128,9 @@
         <p>
         I currently work in Nice, France, as research scientist for <a href="http://neurodec.ai/">Neurodec</a>.
 
-        My colleagues and I are developing our Myoelectric Digital Twin, i.e., a
-        virtual clone of your arm where the quasi-static Maxwell equations
-        ruling the physics inside of it are precisely reproduced.
+        My colleagues and I are developing our <i>Myoelectric Digital Twin</i>,
+        i.e., a virtual clone of your arm where the quasi-static Maxwell
+        equations ruling the physics inside of it are precisely reproduced.
         <br>
         <i>Why that?</i> You may ask. Well, the force exerted by a muscle
         depends on the number of motor units (neurons commanding bunches of
@@ -195,163 +195,417 @@
 
 
       <h2 id="research-interests">Research interests</h2>
-        <p>
-        At the moment, my scientific focus lies on
-        <ul>
-          <li>
-            Low-Tech Highly-Efficient <b>CPU/GPU implementations of Finite Elements</b>
-            (FE) solvers: tired of the unnerving intricacy of the state-of-the-arts
-            FE implementations, I created my own FE environment.
-            What I expected being no more than a handy inquiry tool, turned out
-            to be quite a <i>slick and highly-efficient gadget</i>.
 
-            Now, I aim to assemble, <i>in less than a thousand</i> MATLAB/Python
-            lines, the richest FE software possible, and to make it faster than
-            the best-established <i>compiled</i> FE machineries.
+      <p>
+      My research interests include a host of topics from the <i>High Performance
+      Scientific Computing</i> domain.
 
-            <figure>
-            <img src="imgs/research_interests/FEM_p0_003.png" width=32% height: auto>
-            <img src="imgs/research_interests/FEM_p0_002.png" width=32% height: auto>
-            <img src="imgs/research_interests/FEM_p0_001.png" width=32% height: auto>
-            <figcaption><small><small><p>
-            Piecewise constant component of Mixed-Elements solution (lowest order
-            Raviart-Thomas Elements coupled with piecewise constant FE) to Poisson equation.
-            </p></small></small></figcaption>
-            </figure>
-            Will I be successful? Can't say yet. As now, I only got one of the
-            fastest generator ever of colorful pictures.
-          </li>
-
-          <li>
-            <p>
-            <b>Design of integrator-solutor pairs in Exponential Integration of
-            stiff PDEs</b>, recently with special attention to the so-called
-            <i>Shallow Water Equations</i> (SWEs).
-            </p>
-            <figure>
-            <img src="imgs/research_interests/swe-compressed.png" width=100% height: auto>
-            <figcaption><small><small><p>
-            Atmospheric simulations (in picture a flattened Earth) are among the
-            most prominent SWEs applications as the planar length scales are
-            much greater than the vertical one (atmosphere wraps Earth as
-            plastic wrap on a basketball).
-            Credits for this <a href="https://www.youtube.com/watch?v=xf4PAjdtgZo">simulation</a>'s
-            frame go to <a href="https://www.martin-schreiber.info/">Martin Schreiber</a>
-            and his <a href="http://github.com/schreiberx/sweet" width=32% height: auto>SWEET</a> software.
-            </p></small></small></figcaption>
-            </figure>
-            <p>
-            In particular, we endeavour to design numerical schemes that ignore
-            some of the stiffest components in our SWE system.
-            Those fast moving components are, in fact, sound waves, whose
-            (costly) propagation does not really affect the simulation outcome
-            (which is a fancy way to say that you won't make it rain by
-            screaming at clouds).
-            </p>
-          </li>
-
-          <li>
-            Efficiently <b>computing</b> linear combinations of the so called
-            <b>matrix phi-functions</b> arising in the context of <b>Exponential
-            Integration of stiff PDEs</b>.
-
-            For a given matrix <b>A</b>, such linear combinations can be formed
-            by computing the action of a slightly larger, upper block diagonal
-            matrix <b>&Atilde;</b>, as in figure, with <b>W</b> and <b>J</b>
-            depending on the desired combination.
-            <center>
-            <figure>
-            <img src="imgs/research_interests/AtildeAWJ.png" width=50% height: auto>
-            <figcaption><small><small><p>
-            To give an idea, usually <b>A</b> has millions of rows/columns while <b>J</b> is, like,
-            a 4 by 4 matrix at most. The matrix <b>W</b> is full and <b>J</b> is
-            the null matrix with ones on the first upper diagonal.
-            </p></small></small></figcaption>
-            </figure>
-            </center>
-            In a typical exponential integrator, we are tasked to compute hundred
-            if not thousands of times the action of the exponential of <b>&Atilde;</b>
-            with varying matrices <b>W</b> and <b>J</b>.
-            This is a vastly repetitive task. We exploited this characteristic
-            of exponential integrators to develop
-            <a href="https://github.com/francozivcovich/bamphi">bamphi</a>,
-            a routine computing the action of the matrix exponential which is
-            designed to collect and reuse the information about <b>A</b> gathered
-            through the exponential integration steps, reaching unmatched levels
-            of speed and accuracy on a variety of numerical experiments
-            (see <a href="https://www.sciencedirect.com/science/article/pii/S0377042722005714">CCZ22</a>).
-          </li>
-
-          <li>
-            <p>
-            once again, <b>Exponential Integration of stiff PDEs</b>: this time
-            for computing linear combinations of phi-functions of matrices that
-            are in <b>Kronecker form</b>.
-            Matrices in this form are very common, as they arise from the Finite
-            Differences (FD) discretization of differential operators.
-            For such matrices, there exists a way of computing the action
-            their exponential (based on the BLAS3 matmul routine) which is
-            <i>madly efficient</i>, both over CPU and GPU parallel architectures.
-            In particular, we shown in
-            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:UeHWp8X0CEIC">CCEOZ22</a>
-            that the performance can be so extreme that are close to the
-            theoretical limit of the hardware.
-            </p>
-
-          </li>
-
-
-        </ul>
-        </p>
-
-
-        <p>
-        However, my research interests include a host of topics from the wider
-        <i>High Performance Scientific Computing</i> domain, such as
-        <ul>
-
-          <li>
-            <p>
-            <b>Designing and testing of new numerical schemes</b> that fit the
-            study of low-regularity 'non-smooth' phenomena resonating in the
-            context of hyperbolic PDEs
-            (check this <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:Y0pCki6q_DkC">LSZ22</a>).
-            </p>
-          </li>
-
-          <li>
-            <p>
-            <b>Arbitrary Precision</b> computing of <i>Functions of Matrices</i>.
-            In particular, I am the proud co-author of the (fastest and) sole
-            algorithm
-            (check this <a href="https://www.sciencedirect.com/science/article/pii/S0377042718304680">CZ18</a>)
-            for computing the matrix exponential that is capable to grant any
-            backward error accuracy disregarding the working precision.
-            This is particularly relevant even in those cases where standard levels
-            accuracy are needed.
-            </p>
-          </li>
-
-          <li>
-            <b>Interpolation Theory</b>: apparently, a new expansion I found in
-            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:u5HHmVD_uO8C">Z19</a>
-            of the widely known divided differences for analytics functions was
-            actually very helpful in Monte Carlo simulations of quantum many-body
-            systems, and this got me an algorithm called after myself
-            (search for Zivcovich's algorithm
-            <a href="https://www.sciencedirect.com/science/article/pii/S0010465520301673?casa_token=sjEqjmMn9WMAAAAA:B9hBmkEodZW0RcVeJYACpdZXGJmeqXHpuGMncrk8kSHq8TAKzGrck46_uBNaa_d6MmZt_MFxnpFP">here</a>).
-          </li>
-
-          <li>
-            <p>
-            numerical methods for <b>Optimal Control</b> problems, in particular
-            the fast and efficient implementation of sparse and optimal control
-            problems for Cucker-Smale models.
-            <p>
-            </p>
-          </li>
-        </ul>
+      In this section I give a quick overview of some of them.
       </p>
+      <p>
+      Table of contents:
+      <ul>
+        <li><a href="#finite-elements">click to go to</a>: Low-Tech High-Efficiency CPU/GPU Finite Elements implementations</li>
+        <li><a href="#exp-integrators">click to go to</a>: Design of integrator-solutor pairs in Exponential Integration of stiff PDEs</li>
+        <li><a href="#optimal-control">click to go to</a>: Numerical methods for Multiscale and Optimal Control problems</li>
+        <li><a href="#num-lin-algebra">click to go to</a>: Numerical Linear Algebra and Arbitrary Precision arithmetic</li>
+      </ul>
+      </p>
+
+      <h3 id="finite-elements">Low-Tech High-Efficiency CPU/GPU Finite Elements implementations</h3>
+      <p>
+        One day, tired of the unnerving intricacy of the state-of-the-arts FE
+        implementations, I created my own rudimental FE environment.
+        What I expected to be no more than a handy inquiry tool, turned out
+        being quite a <i>slick and highly-efficient gadget</i>.
+      </p>
+
+        <figure>
+        <img src="imgs/research_interests/finite-elements/FEM_p0_003.png" width=32% height: auto>
+        <img src="imgs/research_interests/finite-elements/FEM_p0_002.png" width=32% height: auto>
+        <img src="imgs/research_interests/finite-elements/FEM_p0_001.png" width=32% height: auto>
+        <figcaption><small><small><p>
+        Piecewise constant component of Mixed-Elements solution (lowest order
+        Raviart-Thomas Elements coupled with piecewise constant FE) to Poisson equation.
+        </p></small></small></figcaption>
+        </figure>
+      <p>
+        Now, I aim to assemble, <i>in less than a thousand</i> MATLAB/Python
+        lines, the richest FE software possible, and to make it faster than
+        the best-established <i>compiled</i> FE machineries.
+        Will I be successful? Can't say yet. As now, I only got one of the
+        fastest generator ever of colorful pictures.
+      </p>
+
+
+
+
+
+      <h3 id="exp-integrators">Design of integrator-solutor pairs in Exponential Integration of stiff PDEs</h3>
+
+      <p>
+      When simulating dynamics, more accuracy means more effort. This is especially
+      true when the underlying differential equations are <b>stiff</b>.
+      Stiff systems are characterized by a wide range of time scales in their
+      evolution.
+      Let's write our stiff system of differential equations like this:
+      </p>
+      <figure>
+        <center>
+      <img src="imgs/research_interests/exp-integrators/stiffode.png" width=50% height: auto>
+        </center>
+      </figure>
+      <p>
+        so that the stiffness is concentrated in the linearity <b>A</b>.
+        Usually the matrix <b>A</b> comes from the space discretization of
+        differential operators from Partial Differential equations, it is
+        therefore also extremely <b>stiff, large, and sparse</b>.
+
+        Exponential integrators are usually derived from the Duhamel formula
+      </p>
+      <figure>
+        <center>
+      <img src="imgs/research_interests/exp-integrators/duhamel.png" width=70% height: auto>
+        </center>
+      </figure>
+      <p>
+        where the linearity <b>A</b> is treated exactly. For this reason, they
+        are especially suited for the integration of stiff systems of
+        differential equations. Each exponential-type method differs from the
+        others for how it approximates the integral appearing in the formula
+        above, usually by means of few linear combinations of phi-functions:
+      </p>
+      <figure>
+        <center>
+      <img src="imgs/research_interests/exp-integrators/lincombphifun.png" width=52% height: auto>
+        </center>
+      </figure>
+      <p>
+      But, are these linear combinations of phi-functions difficult to compute?
+      Well, not really, we can obtain the combination above through the single,
+      slightly larger, action of the matrix exponential:
+      <figure>
+        <center>
+      <img src="imgs/research_interests/exp-integrators/task.png" width=9% height: auto>
+        </center>
+      </figure>
+      <p>
+      where
+      </p>
+      <figure>
+        <center>
+      <img src="imgs/research_interests/exp-integrators/whoAtilde.png" width=100% height: auto>
+        </center>
+      </figure>
+      </p>
+
+      <p>
+        When dealing with such matrices you have to be careful to what you do:
+      </p>
+      <ul>
+        <li>it's <b>okay</b> to multiply <b>A</b> by vectors</li>
+        <li>it's <b>NOT okay</b> to form functions of <b>A</b></li>
+      </ul>
+      <p>
+        In fact, say that <b>A</b> is the Finite Differences discretization of
+        the two-dimensional Laplacian operator over a square 128x128 grid,
+        we have that
+      </p>
+      <ul>
+        <li>storing <b>A</b> requires about 2Mb of space</li>
+        <li>storing the <b>exponential</b> of <b>A</b> requires about 4.3Gb(!!!) of space</li>
+      </ul>
+      <p>
+        Hence, similarly to when solving linear systems you never actually
+        compute the inverse of the lhs matrix, we do not form the exponential of
+        <b>&Atilde;</b> but just its <i>action</i>.
+      </p>
+
+
+
+      <h4>The Kronecker's "pro-gamer" move</h4>
+      <p>
+      When an evolutionary PDE is numerically treated with the method of lines
+      over domains that are Cartesian product of <i>d</i> intervals, <b>A</b> is
+      a Kronecker sum, that is
+      </p>
+      <figure>
+          <img src="imgs/research_interests/exp-integrators/kroneckerform.png" width=105% height: auto>
+      </figure>
+      <p>
+      where the rounded x indicates the <a href="https://en.wikipedia.org/wiki/Kronecker_product">Kronecker product</a>.
+      <br>
+      Now, the cool thing about matrices in this form is that their exponential
+      can be written as
+      </p>
+      <figure>
+        <center>
+          <img src="imgs/research_interests/exp-integrators/expkroneckernaive.png" width=55% height: auto>
+        </center>
+      </figure>
+      <p>
+      which is a rather stupid way to form it, as it implies to form a huge full
+      matrix and then to multiply it into a vector.
+      On the other hand, this is equivalent to
+      </p>
+      <figure>
+        <center>
+          <img src="imgs/research_interests/exp-integrators/expkroneckerclever.png" width=70% height: auto>
+        </center>
+      </figure>
+      <p>
+      where <b>U</b> is a <i>d</i>-dimensional tensor such that vec(<b>U</b>),
+      i.e. stacking its columns one on the top of the other, equals v, and
+      the strangely subscripted cross products are called &mu;-mode products.
+      <br>
+      The &mu;-mode product takes the the <i>d</i>-dimensional tensor <b>U</b>
+      and the exponential of <b>A</b><sub>&mu;</sub>,
+      and it does the following serie of operations to them:
+      </p>
+      <ul>
+      <li>rotates  it to expose its &mu;th face;</li>
+      <li>reshapes it so that it becomes a two-dimensional matrix with &mu; rows;</li>
+      <li>multiplies the exponential of <b>A</b><sub>&mu;</sub> into it;</li>
+      <li>reshapes the result back into the original form of <b>U</b>.</li>
+      </ul>
+      <p>
+      The above formula is nothing more than the <i>d</i>-dimensional
+      generalization of the well-known two dimensional formula
+      </p>
+      <figure>
+        <center>
+          <img src="imgs/research_interests/exp-integrators/expkroneckerclever2D.png" width=40% height: auto>
+        </center>
+      </figure>
+      <p>
+      This procedure is madly efficient: the <i>d</i> matrix exponentials are
+      usually rather small and can easily be formed once and for all while the
+      &mu;-mode products rely on the
+      <a href="https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms#Level_3">level 3 gemm BLAS</a>
+      (Generalized Matrix Matrix product from the Basic Linear Algebra Subprograms).
+      </p>
+
+      <p>
+      In particular, we shown in
+      <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:UeHWp8X0CEIC">CCEOZ22</a>
+      that the performance on a GPU architeture can be so extreme that are close
+      to the theoretical limit of the hardware.
+      </p>
+
+      <p>
+      Now, to compute linear combinations of phi-function of matrix in Kronecker
+      product is trickier since <b>&Atilde;</b> is not in Kronecker form even
+      though <b>A</b> is.
+      However, in
+      <a href="https://arxiv.org/pdf/2210.07667.pdf">CCZ23<a>
+      we managed to tackle this issue using an alternative integral definition
+      of these functions. Results are very promising and we are very active in
+      this line of work.
+      </p>
+
+
+
+
+
+      <h4>The BAMPHI routine</h4>
+      <p>
+        To form linear combinations of the phi-functions when the matrix to be
+        exponentiate is not in Kronecker form one has to settle for something
+        more involved and expensive.
+        A prominent way is represented by the so called Krylov-type approximations:
+      </p>
+      <figure>
+        <center>
+          <img src="imgs/research_interests/exp-integrators/krylovapprox.png" width=40% height: auto>
+        </center>
+      </figure>
+      <p>
+        where m << N, <b>V</b><sub>m</sub> and <b>H</b><sub>m</sub> are the matrices typical of the standard
+        Krylov decomposition of <b>&Atilde;</b>:
+      </p>
+      <figure>
+        <center>
+          <img src="imgs/research_interests/exp-integrators/krylovdeco.png" width=100% height: auto>
+        </center>
+      </figure>
+      <p>
+        a prominent example of a Krylov-type routine is constituted by
+        <a href="https://www.sciencedirect.com/science/article/pii/S0021999118304042">KIOPS</a>.
+        <br>
+        The problem with this approach is that, when <b>A</b> is very large, the
+        Arnoldi procedure employed to obtain the Krylov decomposition requires
+        tons of memory operations and huge storage space (the matrix
+        <b>V</b><sub>m</sub> gets really heavy for growing values of m).
+        <br>
+        To put things in perspective, Krylov-type methods in exponential
+        integration call the Arnoldi procedure
+      </p>
+      <ul>
+        <li>at each substep (a number in the tens of even hundreds)...</li>
+        <li>...of each linear combination of phi-function (less than ten)...</li>
+        <li>...of each exponential integration step (maybe hundreds, thousands, or even millions)</li>
+      </ul>
+      <p>
+        amounting to an <b>insane</b> amount of calls to this <i>tiring</i>
+        procedure.
+        <br>
+        Moreover, we noticed that, from a call to another to the Arnoldi
+        decomposition, the setting does not change much: the matrix <b>&Atilde;</b>
+        has a stucture as in figure
+      </p>
+      <figure>
+      <center>
+      <img src="imgs/research_interests/exp-integrators/AtildeAWJ.png" width=50% height: auto>
+      <figcaption><small><small><p>
+      To give an idea, usually <b>A</b> has millions of rows/columns while <b>J</b> is, like,
+      a 4 by 4 matrix at most.
+      </p></small></small></figcaption>
+      </center>
+      </figure>
+      <p>
+        In other words, exponential integration is a <b>vastly repetitive task</b>,
+        and this makes us even more frustrated about all those Arnoldi calls.
+      </p>
+      <p>
+        To tackle this issue we designed
+        <a href="https://github.com/francozivcovich/bamphi">BAMPHI</a>,
+        a routine for computing the action of the matrix exponential which is
+        designed to collect and reuse the information about <b>A</b> gathered
+        through the exponential integration steps.
+        <br>
+        To do so, we exploited the fact that the Krylov approximation above is
+        mathematically equivalent to the polynomial approximation interpolating
+        the exponential function at the Ritz’s values, i.e., the eigenvalues of
+        <b>H</b><sub>m</sub>.
+        Therefore, once the Ritz's values are computed once at the first go,
+        BAMPHI continues the calculations by approximating the exponential
+        function via a polynomial interpolation at the set of Ritz's values,
+        bringing the overall number of calls to Arnoldi to one.
+
+        On the other hand, BAMPHI almost always performs a larger number of matrix
+        vector products.
+        But the matrices of interests are not only very large but also
+        <b>very sparse</b>, hence, all in all, BAMPHI manages to reach <b>unmatched
+        levels of speed</b> on a variety of numerical experiments
+        (see <a href="https://www.sciencedirect.com/science/article/pii/S0377042722005714">CCZ22</a>).
+
+        <br>
+
+        As future work, we plan to make a comparison between Krylov-type methods
+        and BAMPHI on a GPU architecture.
+      </p>
+
+
+
+
+      <h4>Exponential integration and Shallow Water Equations</h4>
+
+      <p>
+        Atmospheric simulations are among the most prominent SWEs applications
+        as the planar length scales are much greater than the vertical one
+        (atmosphere wraps Earth as plastic wrap on a basketball).
+        <br>
+        Roughly speaking, due to the obvious symmetries at play, the basis
+        functions used to for spatially discretize PDEs from SWE are usually
+        smoother than the typical FE and with a larger intersection with other
+        basis functions.
+        This makes the discretization matrices usually less sparse, meaning that
+        the matrix vector products are going to be more expensive, but also
+        smaller, meaning that the Arnoldi procedure is less penalizing.
+      </p>
+
+      <figure>
+      <img src="imgs/research_interests/exp-integrators/swe-compressed.png" width=100% height: auto>
+      <figcaption><small><small><p>
+      In picture, a flattened Earth with some meteorological shenanigans going on.
+      Credits for this <a href="https://www.youtube.com/watch?v=xf4PAjdtgZo">simulation</a>'s
+      frame go to <a href="https://www.martin-schreiber.info/">Martin Schreiber</a>
+      and his <a href="http://github.com/schreiberx/sweet" width=32% height: auto>SWEET</a> software.
+      </p></small></small></figcaption>
+      </figure>
+      <p>
+        Furthermore, the stiffest components in SWE systems use to describe the
+        propagation of sound waves, that do not truly affect the simulation
+        outcome (which is a fancy way to say that you won't make it rain by
+        screaming at clouds).
+        Therefore one would like to somehow ignore such components to factor out
+        the huge computational cost connected to their evolution.
+      </p>
+
+      <p>
+        What we are trying to do is to design a successful exponential-integrator/solutor
+        coupling that takes into account the macro charactestics of this
+        particular family of equations.
+      </p>
+
+
+      <h4>Designing of new numerical schemes for 'non-smooth' phenomena</h4>
+      <p>
+        In the hyperbolic PDEs setting, the pointwise smoothing typical of
+        parabolic PDEs can not be expected. Rough or discontinuous initial data
+        spread in the spatial and temporal domain breaking down "classical"
+        integrators.
+      <br>
+        Low-regularity exponential integrators are scheme that deeply embed the
+        underlying structure of resonance into the numerical discretisation to
+        PDEs allowing to prove powerful existence results for nonlinear PDEs at
+        low regularity regimes.
+      </p>
+
+      <p>
+        In
+        <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:Y0pCki6q_DkC">LSZ22</a>
+        we studied the numerical approximation of the semilinear Klein--Gordon
+        equation and discovered a cancellation structure.
+        This led us to derive a low-regularity correction of the Lie splitting
+        method which can have second-order convergence in the energy space under
+        the regularity condition
+      </p>
+        <figure>
+          <center>
+            <img src="imgs/research_interests/exp-integrators/correctedLieregularitycondition.png" width=50% height: auto>
+          </center>
+        </figure>
+      <p>
+        where <i>d</i> = 1, 2, 3 denotes the dimension of space. In one dimension,
+        the proposed method is shown to have a convergence order arbitrarily close
+        to 5/3 in the energy space for solutions in the same space, i.e. no
+        additional regularity in the solution is required.
+      </p>
+
+
+
+      <h3 id="optimal-control">Numerical methods for Multiscale and Optimal Control problems</h3>
+      <p>
+        numerical methods for <b>Optimal Control</b> problems, in particular
+        the fast and efficient implementation of sparse and optimal control
+        problems for Cucker-Smale models.
+      </p>
+
+      <h3 id="num-lin-algebra">Numerical Linear Algebra and Arbitrary Precision arithmetic</h3>
+
+      <p>
+      <b>Arbitrary Precision</b> computing of <i>Functions of Matrices</i>.
+      I am the proud co-author of the (fastest and) sole algorithm
+      (check this <a href="https://www.sciencedirect.com/science/article/pii/S0377042718304680">CZ18</a>)
+      for computing the matrix exponential that is capable to grant any
+      backward error accuracy disregarding the working precision.
+      This is particularly relevant even in those cases where standard levels
+      accuracy are needed.
+      </p>
+      <p>
+        <b>Interpolation Theory</b>: apparently, a new expansion I found in
+        <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:u5HHmVD_uO8C">Z19</a>
+        of the widely known divided differences for analytics functions was
+        actually very helpful in Monte Carlo simulations of quantum many-body
+        systems, and this got me an algorithm called after myself
+        (search for Zivcovich's algorithm
+        <a href="https://www.sciencedirect.com/science/article/pii/S0010465520301673?casa_token=sjEqjmMn9WMAAAAA:B9hBmkEodZW0RcVeJYACpdZXGJmeqXHpuGMncrk8kSHq8TAKzGrck46_uBNaa_d6MmZt_MFxnpFP">here</a>).
+
+      </p>
+
+
+
 
 
 

@@ -1,0 +1,192 @@
+\documentclass[convert={density=900,outext=.png}]{standalone}
+% \documentclass{standalone}
+\usepackage{pgfplots}
+\usepackage{tikz}
+
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+
+\newcommand{\norm}[2][]{\lVert#2\rVert_{#1}}
+
+
+\definecolor{websitepink}{RGB}{237, 237, 246}
+
+
+\begin{document}
+\pagecolor{websitepink}
+
+% % stiffode
+% $
+% u'(t) =
+% \underbrace{\mathbf{\color{red}A}u(t)}_{\text{linear bad guy}}
+% +
+% \underbrace{\mathbf{\color{blue}N}(u(t))}_{\text{nonlinear nice guy}}
+% $
+
+% % duhamel
+% $
+% \displaystyle
+% u(t+k)
+% =
+% \mathrm{e}^{k\mathbf{\color{red}A}}u(t)
+% +
+% \int_0^k
+% \mathrm{e}^{(k-s)\mathbf{\color{red}A}}\mathbf{\color{blue}N}(u(t+s))
+% \mathrm{d}s
+% $
+
+% % lincombphifun
+% $
+% \mathrm{e}^{ k\textbf{\color{red}A} }v_0
+% +
+% \varphi_1( k\textbf{\color{red}A})v_1
+% + \ldots +
+% \varphi_p( k\textbf{\color{red}A})v_p
+% $
+
+% % task
+% $\mathrm{e}^{k{\color{red}\tilde{\mathbf{A}}}} \tilde{v}$
+
+% % whoAtilde
+% $
+% {\color{red}\tilde{\mathbf{A}}} =
+% \begin{pmatrix}
+% \mathbf{\color{red}A} & \mathbf{W} \\
+% \textbf{0} & \mathbf{J}
+% \end{pmatrix}\!\!\,\,
+% \mathbf{J} =
+% \begin{pmatrix}
+% \textbf{0} & \mathbf{I}_{p-1} \\
+% \textbf{0} & \textbf{0}
+% \end{pmatrix}\!\!\,\,
+% \mathbf{W} =
+% \begin{pmatrix}
+% k^{-p}v_p,k^{-p+1}v_{p-1},\ldots,k^{-1}v_1
+% \end{pmatrix}\!\!\,\,
+% \tilde{v} =
+% \begin{pmatrix}
+% v_0   \\
+% e_p
+% \end{pmatrix}
+% $
+
+% % krylovdeco
+% \begin{tikzpicture}[scale = 1]
+%
+% \draw ( 0, 0 ) -- ( 4, 0 ) -- ( 4,4 ) -- ( 0,4 ) -- ( 0, 0 );
+% \node at (2,2) {$\color{red}\tilde{\mathbf{A}}$};
+%
+% \draw ( 4.25, 0 ) -- ( 5.25, 0 ) -- ( 5.25,4 ) -- ( 4.25,4 ) -- ( 4.25, 0 );
+% \node at (4.75,2) {$\mathbf{V}_m$};
+%
+% \node at (5.5,2) {$=$};
+%
+% \draw ( 5.75, 0 ) -- ( 6.75, 0 ) -- ( 6.75,4 ) -- ( 5.75,4 ) -- ( 5.75, 0 );
+% \node at (6.25,2) {$\mathbf{V}_m$};
+%
+% \draw ( 7,3.75 ) -- ( 7.75, 3 ) -- ( 8, 3 ) -- ( 8,4 ) -- ( 7,4 ) -- ( 7,3.75 );
+% \draw[dashed] ( 7,3.75 ) -- ( 7, 3 ) -- ( 7.75, 3 );
+% \node at (7.6,3.6) {$\mathbf{H}_m$};
+%
+% \node at (8.2,2) {$+$};
+% \draw[dashed] ( 9.35,4 ) -- ( 8.5,4 ) -- ( 8.5, 0 ) -- ( 9.35, 0 );
+% \draw ( 9.35, 0 ) -- ( 9.5, 0 ) -- ( 9.5,4 ) -- ( 9.35,4 ) -- ( 9.35, 0 );
+% \node at (9.25,-0.3) {$h_{m+1,m}v_{m+1}$};
+% \end{tikzpicture}
+
+% % krylovapprox
+% $
+% \mathrm{e}^{k{\color{red}\tilde{\mathbf{A}}}}\tilde{v}
+% \approx
+% \norm[2]{\tilde{v}}\mathbf{V}_m \mathrm{e}^{k\mathbf{H}_m}{e}_1
+% $
+
+% % kroneckerform
+% $
+% \displaystyle
+% {\color{red}\mathbf{A}}
+% =
+% \mathbf{A}_d
+% \oplus
+% \mathbf{A}_{d-1}
+% \oplus
+% \cdots
+% \oplus
+% \mathbf{A}_{1}
+% =
+% \sum_{\mu = 1}^d
+% \mathbf{A}_{\otimes\mu},
+% \,\,
+% \mathbf{A}_{\otimes\mu}
+% =
+% \mathbf{I}_{d}
+% \otimes
+% \cdots
+% \otimes
+% \mathbf{I}_{\mu+1}
+% \otimes
+% \mathbf{A}_{\mu}
+% \otimes
+% \mathbf{I}_{\mu-1}
+% \otimes
+% \cdots
+% \otimes
+% \mathbf{I}_{1}
+% $
+
+
+% % expkroneckernaive
+% $
+% \displaystyle
+% \mathrm{e}^{\color{red}\mathbf{A}}v
+% =
+% \left(
+% \mathrm{e}^{\mathbf{A}_d}
+% \otimes
+% \mathrm{e}^{\mathbf{A}_{d-1}}
+% \otimes
+% \cdots
+% \otimes
+% \mathrm{e}^{\mathbf{A}_{1}}
+% \right)v
+% $
+
+% % expkroneckerclever
+% $
+% \displaystyle
+% \mathrm{e}^{\color{red}\mathbf{A}}v
+% =
+% \text{vec}\left(
+% \mathbf{U}
+% \times_1
+% \mathrm{e}^{\mathbf{A}_1}
+% \times_2
+% \mathrm{e}^{\mathbf{A}_{2}}
+% \times_3
+% \cdots
+% \times_d
+% \mathrm{e}^{\mathbf{A}_{d}}
+% \right)
+% $
+
+% % expkroneckerclever2D
+% $
+% \displaystyle
+% \mathrm{e}^{\color{red}\mathbf{A}}v
+% =
+% \text{vec}
+% \left(
+% \mathrm{e}^{\mathbf{A}_{1}}
+% \mathbf{U}
+% (\mathrm{e}^{\mathbf{A}_{2}})^{T}
+% \right)
+% $
+
+% % correctedLieregularitycondition
+$
+(u,\partial_t u)
+\in
+L^{\infty}(0,T;H^{1+\frac d4}\times H^{\frac d4})
+$
+
+\end{document}
