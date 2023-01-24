@@ -52,7 +52,7 @@
 
       <br>
 
-      <h2>Welcome to my homepage!</h2>
+      <h1>Welcome to my homepage!</h1>
 
       <br>
       <div>
@@ -118,7 +118,7 @@
     </div>
 
     <div class="column right">
-      <h1><big>Franco Zivcovich</big></h1>
+      <h0>Franco Zivcovich</h0>
       <h3>Mathematician, pizza expert.</h3>
       <h6 style="color:#A3A2A2";>(site under construction - last update: January 2023)</h6>
 
@@ -271,7 +271,7 @@
       <p>
         where the linearity <b>A</b> is treated exactly. For this reason, they
         are especially suited for the integration of stiff systems of
-        differential equations. Each exponential-type method differs from the
+        differential equations (see [HO10]). Each exponential-type method differs from the
         others for how it approximates the integral appearing in the formula
         above, usually by means of few linear combinations of phi-functions:
       </p>
@@ -321,6 +321,13 @@
         <b>&Atilde;</b> but just its <i>action</i>.
       </p>
 
+      <p>
+        <small>
+        <i>References:</i>
+        <br>
+        [HO10] M. Hochbruck, A. Ostermann, Exponential integrators, Acta Numer. 19 (2010) 209–286.
+        </small>
+      </p>
 
 
       <h4>The Kronecker's "pro-gamer" move</h4>
@@ -364,7 +371,7 @@
       </p>
       <ul>
       <li>rotates  it to expose its &mu;th face;</li>
-      <li>reshapes it so that it becomes a two-dimensional matrix with &mu; rows;</li>
+      <li>reshapes it so that it becomes a two-dimensional matrix with n<sub>&mu;</sub> rows;</li>
       <li>multiplies the exponential of <b>A</b><sub>&mu;</sub> into it;</li>
       <li>reshapes the result back into the original form of <b>U</b>.</li>
       </ul>
@@ -387,7 +394,7 @@
 
       <p>
       In particular, we shown in
-      <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:UeHWp8X0CEIC">CCEOZ22</a>
+      <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:UeHWp8X0CEIC">[CCEOZ22]</a>
       that the performance on a GPU architeture can be so extreme that are close
       to the theoretical limit of the hardware.
       </p>
@@ -397,12 +404,23 @@
       product is trickier since <b>&Atilde;</b> is not in Kronecker form even
       though <b>A</b> is.
       However, in
-      <a href="https://arxiv.org/pdf/2210.07667.pdf">CCZ23<a>
+      <a href="https://arxiv.org/pdf/2210.07667.pdf">[CCZ23k]<a>
       we managed to tackle this issue using an alternative integral definition
       of these functions. Results are very promising and we are very active in
       this line of work.
       </p>
 
+      <p>
+        <small>
+        <i>References:</i>
+        <br>
+        [CCEOZ22] M. Caliari, F. Cassini, L. Einkemmer, A. Ostermann, F. Zivcovich, A &mu;-mode integrator for solving evolution equations in Kronecker form, J. Comput. Phys. 455 (2022) 110989.
+        <br>
+        [CCZ22]   M. Caliari, F. Cassini, F. Zivcovich, A &mu;-mode BLAS approach for multidimensional tensor structured problems, Numer. Algorithms (2022).
+        <br>
+        [CCZ23k]  M. Caliari, F. Cassini, F. Zivcovich, A &mu;-mode approach for exponential integrators: actions of &phi;-functions of Kronecker sums, ArXiv (2023).
+        </small>
+      </p>
 
 
 
@@ -429,8 +447,8 @@
         </center>
       </figure>
       <p>
-        a prominent example of a Krylov-type routine is constituted by
-        <a href="https://www.sciencedirect.com/science/article/pii/S0021999118304042">KIOPS</a>.
+        a prominent example of a Krylov-type routine is constituted by KIOPS from
+        <a href="https://www.sciencedirect.com/science/article/pii/S0021999118304042">[GRT18]</a>.
         <br>
         The problem with this approach is that, when <b>A</b> is very large, the
         Arnoldi procedure employed to obtain the Krylov decomposition requires
@@ -487,12 +505,22 @@
         But the matrices of interests are not only very large but also
         <b>very sparse</b>, hence, all in all, BAMPHI manages to reach <b>unmatched
         levels of speed</b> on a variety of numerical experiments
-        (see <a href="https://www.sciencedirect.com/science/article/pii/S0377042722005714">CCZ22</a>).
+        (see <a href="https://www.sciencedirect.com/science/article/pii/S0377042722005714">[CCZ23b]</a>).
 
         <br>
 
         As future work, we plan to make a comparison between Krylov-type methods
         and BAMPHI on a GPU architecture.
+      </p>
+
+      <p>
+        <small>
+        <i>References:</i>
+        <br>
+        [CCZ23b] M. Caliari, F. Cassini, F. Zivcovich, BAMPHI: Matrix-free and transpose-free action of linear combinations of &phi;-functions from exponential integrators, J. Comput. Appl. Math. 423 (2023) 114973
+        <br>
+        [GRT18]  S. Gaudreault, G. Rainwater, M. Tokman, KIOPS: A fast adaptive Krylov subspace solver for exponential integrators, J. Comput. Phys. 372 (2018) 236–255.
+        </small>
       </p>
 
 
@@ -511,7 +539,7 @@
         basis functions.
         This makes the discretization matrices usually less sparse, meaning that
         the matrix vector products are going to be more expensive, but also
-        smaller, meaning that the Arnoldi procedure is less penalizing.
+        smaller, meaning that the Arnoldi procedure is less penalizing (see [GCDT22]).
       </p>
 
       <figure>
@@ -538,14 +566,21 @@
         particular family of equations.
       </p>
 
-
-      <h4>Designing of new numerical schemes for 'non-smooth' phenomena</h4>
       <p>
-        In the hyperbolic PDEs setting, the pointwise smoothing typical of
-        parabolic PDEs can not be expected. Rough or discontinuous initial data
-        spread in the spatial and temporal domain breaking down "classical"
-        integrators.
-      <br>
+        <small>
+        <i>References:</i>
+        <br>
+        [GCDT22] S. Gaudreault, M. Charron, V. Dallerit, M. Tokman, High-order numerical solutions to the shallow-water equations on the rotated cubed-sphere grid, J. Comput. Phys. 449 (2022) 110792
+        </small>
+      </p>
+
+
+
+      <h4>Designing new numerical schemes for 'non-smooth' phenomena</h4>
+      <p>
+        In the hyperbolic setting, the pointwise smoothing typical of parabolic
+        PDEs can not be expected. Rough or discontinuous initial data spread
+        in the spatial and temporal domain breaking down "classical" integrators.
         Low-regularity exponential integrators are scheme that deeply embed the
         underlying structure of resonance into the numerical discretisation to
         PDEs allowing to prove powerful existence results for nonlinear PDEs at
@@ -554,12 +589,54 @@
 
       <p>
         In
-        <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:Y0pCki6q_DkC">LSZ22</a>
-        we studied the numerical approximation of the semilinear Klein--Gordon
-        equation and discovered a cancellation structure.
-        This led us to derive a low-regularity correction of the Lie splitting
-        method which can have second-order convergence in the energy space under
-        the regularity condition
+        <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:Y0pCki6q_DkC">[LSZ22]</a>
+        we studied the numerical approximation of the semilinear Klein-Gordon
+        equation
+      </p>
+      <figure>
+        <center>
+        <img src="imgs/research_interests/exp-integrators/kleingordon.png" width=70% height: auto>
+        </figure>
+        </center>
+      </figure>
+      <p>
+        which, when f is the sine funciton, is often referred to as the sine-Gordon
+        equation.
+        This arises in many physical applications, such as magnetic-flux
+        propagation in Josephson junctions, bloch-wall dynamics in magnetic
+        crystals, propagation of dislocation in solid and liquid crystals,
+        propagation of ultra-short optical pulses in two-level media.
+      </p>
+      <!-- <figure>
+        <center>
+          <img src="imgs/research_interests/exp-integrators/ultrashort.png" width=100% height: auto>
+          <figcaption><small><small><p>
+            Complete characterization of ultrashort optical pulses with a
+            phase-shifting wedged reversal shearing interferometer Image credits
+            to <a href="https://www.nature.com/articles/s41377-018-0022-0">"Light: Science & Applications"</a>.
+          </p></small></small></figcaption>
+        </center>
+      </figure> -->
+      <p>
+        In particular, we discovered a cancellation structure that led us to
+        derive a low-regularity correction of the Lie splitting method
+      </p>
+      <figure>
+        <center>
+        <img src="imgs/research_interests/exp-integrators/correctedLie.png" width=100% height: auto>
+        </center>
+      </figure>
+      <p>
+        where
+      </p>
+      <figure>
+        <center>
+        <img src="imgs/research_interests/exp-integrators/KGoperatorL.png" width=75% height: auto>
+        </center>
+      </figure>
+      <p>
+        This corrected scheme can have second-order convergence in the energy
+        space under the regularity condition
       </p>
         <figure>
           <center>
@@ -572,37 +649,348 @@
         to 5/3 in the energy space for solutions in the same space, i.e. no
         additional regularity in the solution is required.
       </p>
+      <p>
+        <small>
+        <i>References:</i>
+        <br>
+        [LSZ22] B. Li, K. Schratz, F. Zivcovich, A second-order low-regularity correction of Lie splitting for the semilinear Klein-Gordon equation, ESAIM: M2AN, Forthcoming article (2022)
+        <br>
+        [RS21]  F. Rousset, K. Schratz: A general framework of low-regularity integrators. SIAM J. Numer. Anal. 59 (2021), pp. 1735–1768.
+        </small>
+      </p>
 
 
 
       <h3 id="optimal-control">Numerical methods for Multiscale and Optimal Control problems</h3>
       <p>
-        numerical methods for <b>Optimal Control</b> problems, in particular
-        the fast and efficient implementation of sparse and optimal control
-        problems for Cucker-Smale models.
+        Optimal Control problems for multiagent systems cover an important role
+        in the applications.
+        Examples amongst others include controlling storms of drones for
+        monitoring large forests, evacuating crowds non-chaotically from large
+        public structures such as airports, city centres, or malls.
+        <br>
+        <br>
+        Multiagent systems problems are computationally hard to tackle as they
+        require to evolve the behavior of N agents that constantly influence
+        each other following intricate patterns.
+
+        In particular, we started examining the problem of leading to consensus
+        N agents, that is they reach the same velocity (vector), that operate
+        under the interaction model
+      </p>
+        <figure>
+          <center>
+            <img src="imgs/research_interests/optimal-control/modelinteraction.png" width=90% height: auto>
+          </center>
+        </figure>
+      <p>
+        where P is some radial interaction kernel.
+        Then we considered the following minimizing <b>non-differentiable
+        control cost functional</b>:
+      </p>
+        <figure>
+          <center>
+            <img src="imgs/research_interests/optimal-control/minimizingfunctional.png" width=70% height: auto>
+          </center>
+        </figure>
+      <p>
+        where the scalars &nu; and &beta; tell how expensive is the control.
+        Clearly, the consensus is penalized along both a quadratic control and
+        a non-smooth, sparsity-promoting term (the 1-norm term).
+        By doing this, we enforce sparsity on our optimal control strategy, with
+        evident positive computational effects.
+        Now, if we define the Hamiltonian as
+      </p>
+        <figure>
+          <center>
+            <img src="imgs/research_interests/optimal-control/hamiltonian492.png" width=90% height: auto>
+          </center>
+        </figure>
+      <p>
+        we can compute the following adjoint equations
+      </p>
+        <figure>
+          <center>
+            <img src="imgs/research_interests/optimal-control/hamiltonian493.png" width=80% height: auto>
+          </center>
+        </figure>
+      <p>
+        for every i = 0,1,...,N and final conditions p<sub>i</sub>(T)=0 and
+        q<sub>i</sub>(T)=0.
+        However,
+        to get the optimality conditions we also need
+      </p>
+        <figure>
+          <center>
+            <img src="imgs/research_interests/optimal-control/hamiltonian494.png" width=45% height: auto>
+          </center>
+        </figure>
+      <p>
+        where D indicates the subdifferential of u at 0. To address this problem
+        we had to resort to subdifferential theory. As a result, we found a
+        componentwise relation between the optimal control u* and the Lagrange
+        multipliers q appearing in the Hamiltonian:
+      </p>
+        <figure>
+          <center>
+            <img src="imgs/research_interests/optimal-control/uifofqi.png" width=40% height: auto>
+          </center>
+        </figure>
+      <p>
+        At this time, from an optimization point of view, deriving q still is
+        particularly challenging as standard gradient-based numerical methods
+        do not suit our non-smooth cost functional.
+        To tackle this problem we had to consider a class of <b>iterative
+        proximal gradient algorithms</b>, that are extensions of the classical
+        gradient method.
+        <br>
+        <br>
+        At this point, to complete our fast implementation, a bit of numerical
+        craftiness was required: if we indicate with <b>P</b> the matrix whose
+        (i,j) entry is P(||x<sub>i</sub>-x<sub>j</sub>||<sub>2</sub>) we can
+        write in vector form
+      </p>
+        <figure>
+          <center>
+            <img src="imgs/research_interests/optimal-control/FASThamiltonian439-1.png" width=60% height: auto>
+          </center>
+        </figure>
+      <p>
+        where the dot indicates the componentwise product and 1 indicates the
+        matrix of all ones of the specified dimension, then
+      </p>
+        <figure>
+          <center>
+            <img src="imgs/research_interests/optimal-control/FASThamiltonian439-2.png" width=42% height: auto>
+          </center>
+        </figure>
+      <p>
+        where we have
+      </p>
+        <figure>
+          <center>
+            <img src="imgs/research_interests/optimal-control/whoQ.png" width=95% height: auto>
+          </center>
+        </figure>
+      <p>
+        That is we singled out the matrices of our system of rank 1 and we
+        exploited this to enhance performances.
+        In fact, a rank one matrix <b>A</b> with N rows and N columns is a
+        blessing, computationally speaking, as it can be written as the multiplication
+        of a column vector and a row vector.
+        This means that it can be stored in 2N space, the product between
+        <b>A</b> and a vector b can be performed in O(N) operations.
+        Also, the matrix multiplication between two rank-1 matrices can be done
+        in O(N) and it produces, again, a rank-1 matrix.
+
+        <br>
+        <br>
+        This, togheter with the extreme performances brought by the vectorization
+        of the calculations exploiting BLAS routines, led to a highly performant
+        software for simulating our multiagents Optimal Control system.
+        <br>
+        As a result, while the state-of-the-art code evoles and controls a
+        system with N = 2000 agents in <b>83 hours</b>, our code does so in a
+        <b>couple of minutes</b>.
+        <br>
+        <br>
+        Thanks to these high performances we were able to study multiagent
+        systems on an unprecedented scale (up to 10 thousands agents in two
+        wall-clock hours).
+      </p>
+      <figure>
+        <center>
+          <img src="imgs/research_interests/optimal-control/uncontrolled.png" width=100% height: auto>
+        <figcaption><small><small><p>
+        Velocity of particles (x component vs. y component) over time in the uncontrolled case.
+        <br>
+        Number of agents N = 10<sup>4</sup>, time frames corresponding to t = 0, T/2,T, T = 5.
+        </p></small></small></figcaption>
+      </center>
+      </figure>
+      <figure>
+        <center>
+          <img src="imgs/research_interests/optimal-control/controlled.png" width=100% height: auto>
+          <figcaption><small><small><p>
+          Velocity of particles (x component vs. y component) over time in the only smooth control case.
+          <br>
+          Number of agents N = 10<sup>4</sup>, time frames corresponding to t = 0, T/2,T, T = 5.
+          </p></small></small></figcaption>
+      </center>
+      </figure>
+      <figure>
+        <center>
+          <img src="imgs/research_interests/optimal-control/controlledwithnonsmoothpenalization.png" width=100% height: auto>
+          <figcaption><small><small><p>
+          Velocity of particles (x component vs. y component) over time in the smooth and non-smooth control case.
+          <br>
+          Number of agents N = 10<sup>4</sup>, time frames corresponding to t = 0, T/2,T, T = 5.
+          </p></small></small></figcaption>
+      </center>
+      </figure>
+
+      <p>
+        <small>
+        <i>References:</i>
+        <br>
+        []
+        </small>
       </p>
 
       <h3 id="num-lin-algebra">Numerical Linear Algebra and Arbitrary Precision arithmetic</h3>
 
       <p>
-      <b>Arbitrary Precision</b> computing of <i>Functions of Matrices</i>.
-      I am the proud co-author of the (fastest and) sole algorithm
-      (check this <a href="https://www.sciencedirect.com/science/article/pii/S0377042718304680">CZ18</a>)
-      for computing the matrix exponential that is capable to grant any
-      backward error accuracy disregarding the working precision.
-      This is particularly relevant even in those cases where standard levels
-      accuracy are needed.
+        Numerical Linear Algebra is the field where I come from.
       </p>
+
+
+      <h4>Novel algorithm for computing the divided differences of analytic functions</h4>
       <p>
-        <b>Interpolation Theory</b>: apparently, a new expansion I found in
-        <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:u5HHmVD_uO8C">Z19</a>
-        of the widely known divided differences for analytics functions was
-        actually very helpful in Monte Carlo simulations of quantum many-body
-        systems, and this got me an algorithm called after myself
-        (search for Zivcovich's algorithm
-        <a href="https://www.sciencedirect.com/science/article/pii/S0010465520301673?casa_token=sjEqjmMn9WMAAAAA:B9hBmkEodZW0RcVeJYACpdZXGJmeqXHpuGMncrk8kSHq8TAKzGrck46_uBNaa_d6MmZt_MFxnpFP">here</a>).
+        Computing divided differences is a recursive division process.
+        Given a sequence of points and a function f, the jth divided difference
+        of f is given by
+      </p>
+        <figure>
+          <center>
+            <img src="imgs/research_interests/num-lin-alg-mul-mat-fun/standardrecurrence.png" width=100% height: auto>
+          </center>
+        </figure>
+        <p>
+        Unfortunately, this algorithm, called "standard recurrence", is a poor
+        algorithm.
+        Especially for confluent points, it suffers from large error propagation
+        (due to all the <i>dividing</i>) and heavy catastrophic cancellation (due to all
+        the <i>differencing</i>).
+
+        I suppose, though, that in 17th century this was not felt as a big
+        problem as only few divided differences were needed.
+        Consider that, back then, these values were used to approximate logarithms,
+        exponential, and trigonometric functions.
+        Also, one could drag behind some operations down the sheet and, in case
+        of cancellation, add some extra digits.
+
+        <br>
+        Then, in the Sixties, the diffusion of computers in the academies made
+        scientists less adverse to algorithms with higher complexity.
+        It was in this context that G. Opitz, in his 1964 paper [O64], shown a
+        new way of computing the divided differences.
+        The Opitz's theorem says that, given a function f, its divided differences
+        can be computed as
+      </p>
+        <figure>
+          <center>
+            <img src="imgs/research_interests/num-lin-alg-mul-mat-fun/opitztheorem.png" width=80% height: auto>
+          </center>
+        </figure>
+        <p>
+          This algorithm is particularly powerful for it allows to compute the
+          divided differences at points which are confluent or even coincident.
+        <!-- <br>
+          On the other hand, it requires the computation of a matrix function
+          with very high relative precision.
+          In fact, take for example the problem of computing the divided
+          differences of the exponential function over 50 equispaced points
+          between 0 and 1.
+          The first column of the matrix exponential of the Opitz's matrix has
+          entries with magnitude ranging from 1 to 1e-63.
+          If a relative error criterion was to be used, say we want the relative
+          error to be smaller than 1e-16, 19 exponential power series terms would
+          do the job but every divided difference from the 20th to the last
+          would be erroneously computed as 0.
+          This is because the jth power of the Opitz's matrix has no more than
+          j nonzero subdiagonals.
+        <br>
+          For this reason in 1984, McCurdy, Ng, and Parlett wrote a manuscript [MNP84]
+          about an accurate way to form the divided differences of the exponential
+          function through a modification of the Opitz's algorithm.
+        <br> -->
+        <br>
+          In
+          <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:u5HHmVD_uO8C">[Z19]</a>
+          I derived a new expansion of the divided differences that allowed to
+          compute the divided differences with the same accuracy granted by the
+          Opitz algorithm but with complexity O(n<sup>2</sup>) instead of
+          O(n<sup>3</sup>).
+          <br>
+          <br>
+          I am extra proud of this result since in 2020 it was used by a group
+          of physicists for their Monte Carlo simulations of quantum many-body
+          systems [GBH20] (also, they called it Zivcovich's algorithm &#128540;).
+
 
       </p>
+      <p>
+        <small>
+        <i>References:</i>
+        <br>
+        [GBH20] L. Gupta, L. Barash, I. Hen, Calculating the divided differences of the exponential function by addition and removal of inputs, Comput. Phys. Commun., 254, (2020), 107385
+        <!-- <br>
+        [MNP84] A. McCurdy, K.C. Ng, B.N. Parlett, Accurate Computation of Divided Differences of the Exponential Function, Mathematics of Computation, Vol. 43, No. 168 (1984), pp. 501-528 -->
+        <br>
+        [O64] G. Opitz, Steigungsmatrizen, Z. Angew. Math. Mech. (1964), 44, T52–T54
+        <br>
+        [Z19] F. Zivcovich, Fast and accurate computation of divided differences for analytic functions, with an application to the exponential function, Dolomites Res. Notes Approx, 12, 28-42(2019)
+        </small>
+      </p>
+
+
+
+
+      <h4>Arbitrary Precision computing of Functions of Matrices</h4>
+
+      <p>
+      Even though I explicitly said it is forbidden, computing the matrix
+      exponential is something people sometimes do.
+      Of course, the matrices they exponentiate are of modest sizes (less than 10
+      thousands rows and columns, I would say) and rigorously dense.
+      The reason for this is that the applications are many, we have seen
+      a couple of them already in this research overview:
+      </p>
+      <ul>
+        <li>exponentiation of the small matrices <b>A</b><sub>&mu;</sub> for the &mu;-mode products;</li>
+        <li>exponentiation of the matrix <b>H</b><sub>m</sub> in Krylov-type methods.</li>
+        <!-- <li>exponentiation of the Opitz's matrix for computing the divided differences of the exponential function.</li> -->
+      </ul>
+      <p>
+        For the first application one needs speed, and the reason why is evident.
+        For the second one, above all, one needs accuracy, most times without
+        even knowing it.
+        There are in fact examples where the exponentiation of <b>H</b><sub>m</sub>
+        using routines able to reach a relative tolerance of 1e-16 (such as
+        MATLAB's expm) return highly inaccurate results (check the example at the
+        end of [CZ19, Section 6]).
+        <br>
+        <br>
+        This is because in vectorial and matricial computations, reaching a
+        relative accuracy equal to machine precision does not grant an accurate
+        result.
+        To understand this better, consider the problem of approximating the
+        vector [M,0] with the vector [M,&epsilon;].
+        The relative error in the norm induced by the scalar product equals
+        &epsilon;M<sup>-1</sup>, which can <i>easily</i> get smaller than the machine
+        precision.
+        <br>
+        <br>
+        In [CZ19], we developed a routine, exptayotf, for computing the matrix
+        exponential that reaches unmatched levels of speed.
+        Also, it is <b>the sole routine</b> able to grant relative accuracies
+        smaller than machine precision both in arbitrary precision arithmetic and
+        in the standard single/double/half precisions.
+
+
+      </p>
+      <p>
+        <small>
+        <i>References:</i>
+        <br>
+        [AMH09] A.H. Al-Mohy, N.J. Higham, A new scaling and squaring algorithm for the matrix exponential, SIAM J. Matrix Anal. Appl. 31 (3) (2009) 970–989
+        <br>
+        [SIRD18] J.Sastre, J. Ibáñez, E.Defez, Boosting the computation of the matrix exponential, Appl. Math. Comput., Volume 340, 1 January 2019, Pages 206-220
+        <br>
+        [CZ19] M. Caliari, F. Zivcovich, On-the-fly backward error estimate for matrix exponential approximation by Taylor algorithm, J. Comput. Appl. Math., 346, 532-548, (2019)
+        </small>
+      </p>
+
 
 
 

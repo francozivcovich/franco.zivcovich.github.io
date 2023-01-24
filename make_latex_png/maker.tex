@@ -1,5 +1,6 @@
 \documentclass[convert={density=900,outext=.png}]{standalone}
 % \documentclass{standalone}
+% \documentclass{article}
 \usepackage{pgfplots}
 \usepackage{tikz}
 
@@ -183,10 +184,209 @@
 % $
 
 % % correctedLieregularitycondition
+% $
+% (u,\partial_t u)
+% \in
+% L^{\infty}(0,T;H^{1+\frac d4}\times H^{\frac d4})
+% $
+
+% standardrecurrence
+% $
+% \displaystyle
+% f[x_{k},\ldots,x_{k+j}]
+% =
+% \frac{f[x_{k+1},\ldots,x_{k+j}]-f[x_{k},\ldots,x_{k+j-1}]}{x_{k+j}-x_{k}},
+% \,\, k = 0,\ldots,n-j,\,\,j=1,\ldots,n
+% $
+
+
+% % opitztheorem
+% $
+% \begin{pmatrix}
+% f[x_{0}] \\
+% f[x_{0},x_{1}] \\
+% \vdots \\
+% f[x_{0},\ldots,x_{n}] \\
+% \end{pmatrix}^\intercal
+% =
+% f
+% \left(
+% \begin{pmatrix}
+% x_0&&&\\
+% 1&x_1&&\\
+% &\ddots&\ddots&\\
+% &&1&x_n\\
+% \end{pmatrix}
+% \right)
+% \begin{pmatrix}
+% & 1 & \\
+% & 0 & \\
+% & \vdots & \\
+% & 0 & \\
+% \end{pmatrix}
+% $
+
+% % kleingordon
+% $
+% \begin{cases}
+% \partial_{tt} u - {\color{red}\Delta} u = f(u) & \text{in}\,\,\,  \Omega\times (0,T]\\
+% u=0 & \text{on}\,\,\, \partial\Omega\times (0,T]\\
+% u|_{t=0}=u^0\,\,\,\text{and}\,\,\,
+% \partial_tu|_{t=0}=v^0 & \text{in}\,\,\, \Omega
+% \end{cases}
+% $
+
+% % correctedLie
+% $
+% \left(\begin{array}{c}
+% u^{n+1} \\
+% v^{n+1}
+% \end{array}\right)=\underbrace{\mathrm{e}^{\tau {\color{red}L}}\left(\begin{array}{c}
+% u^{n} \\
+% v^{n}
+% \end{array}\right)+\tau \mathrm{e}^{\tau {\color{red}L}}\left(\begin{array}{c}
+% 0 \\
+% f\left(u^{n}\right)
+% \end{array}\right)}_{\text {Lie splitting }}+\underbrace{\tau^{2} \mathrm{e}^{\tau {\color{red}L}} \varphi_{2}(-2 \tau {\color{red}L})\left(\begin{array}{c}
+% -f\left(u^{n}\right) \\
+% f^{\prime}\left(u^{n}\right) v^{n}
+% \end{array}\right)}_{\text {low-regularity correction}}
+% $
+
+
+% % KGoperatorL
+% $
+% {\color{red}L} =
+% \left(\begin{array}{cc}
+% 0 & 1 \\
+% {\color{red}\Delta} & 0
+% \end{array} \right) :
+% [H^2(\Omega)\cap H^1_0(\Omega)]\times H^1(\Omega)\rightarrow H^1_0(\Omega)\times L^2(\Omega)
+% $
+
+
+
+% % modelinteraction
+% $
+% \begin{aligned}
+% % \frac{\mathrm{d}}{\mathrm{d}t}
+% \dot{x}(t)   &= v(t) \\
+% % \frac{\mathrm{d}}{\mathrm{d}t}
+% \dot{v}_i(t) &= \frac1N \sum_{j=1}^N
+% P\left(\norm[2]{x_i(t)-x_j(t)}\right)
+% \left(v_j(t)-v_i(t)\right) + u_i(t), \,\,\, i = 1,2,\ldots,N
+% \end{aligned}
+% $
+
+% % minimizingfunctional
+% $
+% \displaystyle
+% \mathcal{J}(u;v^0)
+% =
+% \int_0^T \frac1N \sum_{i=1}^N
+% \left(
+% \norm[2]{\bar{v}-v_i}^2
+% +
+% \nu \norm[2]{u_i}^2
+% +
+% \beta \norm[1]{u_i}
+% \right)
+% \mathrm{d}t
+% $
+
+% % hamiltonian492
+% $
+% \begin{aligned}
+% \mathcal{H}(x,v,u,p,q)
+% &=
+% \frac1N \sum_{i=1}^N
+% \left(
+% \norm[2]{\bar{v}-v_i}^2
+% +
+% \nu \norm[2]{u_i}^2
+% +
+% \beta \norm[1]{u_i}
+% \right)
+% +\frac1N \sum_{i=1}^N \langle p_i,v_i \rangle
+% \\
+% &\quad
+% +\frac1N \sum_{i=1}^N \langle q_i,
+% P\left(\norm[2]{x_i-x_j}\right)
+% \left(v_j-v_i\right) + u_i
+% \rangle
+% \end{aligned}
+% $
+
+% % hamiltonian493
+% $
+% \begin{aligned}
+% -\dot{p}_i = \nabla_{x_i}\mathcal{H}
+% &=
+% \frac1N \sum_{i=1}^N P'\left(\norm[2]{x_i-x_j}\right)\langle q_j-q_i,v_j-v_i\rangle(x_j-x_i)
+% \\
+% -\dot{q}_i = \nabla_{v_i}\mathcal{H}
+% &=
+% p_i +
+% \frac1N \sum_{i=1}^N P\left(\norm[2]{x_i-x_j}\right)( q_j-q_i )-2(v-\bar{v})
+% \end{aligned}
+% $
+
+
+% % hamiltonian494
+% $
+% 0 =
+% \nabla_{u_i}\mathcal{H}
+% =
+% -q_i+2\nu u_i + \beta \mathcal{D}_{\norm[1]{\cdot}}(u_i)
+% $
+
+% % uifofqi
+% $
+% \displaystyle
+% u^{\star}_i
+% =
+% f
+% \left(q^{\star}_i\right),\,\,\, i = 1,2,\ldots,N
+% $
+
+
+% FASThamiltonian439-1
 $
-(u,\partial_t u)
-\in
-L^{\infty}(0,T;H^{1+\frac d4}\times H^{\frac d4})
+\displaystyle
+\dot{q}
+=
+-p - \frac1N \left(\mathbf{P}q-q\cdot\mathbf{P}\,\mathbf{1}_{N\times d}\right)+2(v-\bar{v})
 $
+
+
+% % FASThamiltonian439-2
+% $
+% \displaystyle
+% \dot{p}
+% =
+% - \frac1N \left(\mathbf{Q}x-x\cdot\mathbf{Q}\,\mathbf{1}_{N\times d}\right)
+% $
+
+% % whoQ
+% $
+% \displaystyle
+% \mathbf{Q}
+% =
+% \sum_{i=1}^N
+% \left(
+% (q e_k)\mathbf{1}_{1\times N} - \mathbf{1}_{N\times 1}(q e_k)^{\intercal}
+% \right)
+% \cdot
+% \left(
+% (v e_k)\mathbf{1}_{1\times N} - \mathbf{1}_{N\times 1}(v e_k)^{\intercal}
+% \right)
+% \cdot
+% \mathbf{P}'
+% $
+
+
+
+
+
 
 \end{document}
