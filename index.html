@@ -125,6 +125,11 @@
 
 
       <h2 id="current-position">Current position</h2>
+
+      <button type="button" class="collapsible">
+        <h3 id="finite-elements">Neurodec</h3>
+      </button>
+      <div class="content">
         <p>
         I currently work in Nice, France, as research scientist for <a href="http://neurodec.ai/">Neurodec</a>.
 
@@ -190,6 +195,7 @@
         The simulation is very fast, the data is extremely precise and perfectly
         labeled, making it ideal for training industrial AI-based algorithms.
         </p>
+      </div>
 
 
 
@@ -202,7 +208,7 @@
 
       In this section I give a quick overview of some of them.
       </p>
-      <p>
+      <!-- <p>
       Table of contents:
       <ul>
         <li><a href="#finite-elements">click to go to</a>: Low-Tech High-Efficiency CPU/GPU Finite Elements implementations</li>
@@ -210,9 +216,13 @@
         <li><a href="#optimal-control">click to go to</a>: Numerical methods for Multiscale and Optimal Control problems</li>
         <li><a href="#num-lin-algebra">click to go to</a>: Numerical Linear Algebra and Arbitrary Precision arithmetic</li>
       </ul>
-      </p>
+      </p> -->
 
+
+    <button type="button" class="collapsible">
       <h3 id="finite-elements">Low-Tech High-Efficiency CPU/GPU Finite Elements implementations</h3>
+    </button>
+    <div class="content">
       <p>
         One day, tired of the unnerving intricacy of the state-of-the-arts FE
         implementations, I created my own rudimental FE environment.
@@ -236,12 +246,16 @@
         Will I be successful? Can't say yet. As now, I only got one of the
         fastest generator ever of colorful pictures.
       </p>
+    </div>
 
 
 
 
-
-      <h3 id="exp-integrators">Design of integrator-solutor pairs in Exponential Integration of stiff PDEs</h3>
+    <button type="button" class="collapsible">
+      <h3 id="finite-elements">Design of integrator-solutor pairs in Exponential Integration of stiff PDEs</h3>
+    </button>
+    <div class="content">
+      <!-- <h3 id="exp-integrators">Design of integrator-solutor pairs in Exponential Integration of stiff PDEs</h3> -->
 
       <p>
       When simulating dynamics, more accuracy means more effort. This is especially
@@ -606,18 +620,8 @@
         propagation in Josephson junctions, bloch-wall dynamics in magnetic
         crystals, propagation of dislocation in solid and liquid crystals,
         propagation of ultra-short optical pulses in two-level media.
-      </p>
-      <!-- <figure>
-        <center>
-          <img src="imgs/research_interests/exp-integrators/ultrashort.png" width=100% height: auto>
-          <figcaption><small><small><p>
-            Complete characterization of ultrashort optical pulses with a
-            phase-shifting wedged reversal shearing interferometer Image credits
-            to <a href="https://www.nature.com/articles/s41377-018-0022-0">"Light: Science & Applications"</a>.
-          </p></small></small></figcaption>
-        </center>
-      </figure> -->
-      <p>
+        <br>
+        <br>
         In particular, we discovered a cancellation structure that led us to
         derive a low-regularity correction of the Lie splitting method
       </p>
@@ -658,10 +662,18 @@
         [RS21]  F. Rousset, K. Schratz: A general framework of low-regularity integrators. SIAM J. Numer. Anal. 59 (2021), pp. 1735–1768.
         </small>
       </p>
+    </div>
 
 
 
-      <h3 id="optimal-control">Numerical methods for Multiscale and Optimal Control problems</h3>
+
+    <button type="button" class="collapsible">
+      <h3 id="finite-elements">Numerical methods for Multiscale and Optimal Control problems</h3>
+    </button>
+    <div class="content">
+
+
+      <!-- <h3 id="optimal-control">Numerical methods for Multiscale and Optimal Control problems</h3> -->
       <p>
         Optimal Control problems for multiagent systems cover an important role
         in the applications.
@@ -836,8 +848,15 @@
         []
         </small>
       </p>
+    </div>
 
-      <h3 id="num-lin-algebra">Numerical Linear Algebra and Arbitrary Precision arithmetic</h3>
+
+
+    <button type="button" class="collapsible">
+      <h3 id="finite-elements">Numerical Linear Algebra and Arbitrary Precision arithmetic</h3>
+    </button>
+    <div class="content">
+      <!-- <h3 id="num-lin-algebra">Numerical Linear Algebra and Arbitrary Precision arithmetic</h3> -->
 
       <p>
         Numerical Linear Algebra is the field where I come from.
@@ -991,6 +1010,8 @@
         </small>
       </p>
 
+    </div>
+
 
 
 
@@ -1006,12 +1027,28 @@
 
 
 
-  <!-- <div class="navbar">
-    <a href="#home" class="active">Home</a>
-    <a href="#pubs">Publications</a>
-    <a href="#software">Software </a>
-    <a href="#more">More </a>
-  </div> -->
+
+
+
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
 
 </body>
 </html>
