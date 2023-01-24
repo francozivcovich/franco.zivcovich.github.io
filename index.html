@@ -786,15 +786,15 @@
           </center>
         </figure>
       <p>
-        That is we singled out the matrices of our system of rank 1 and we
+        That is, we singled out the rank-1 matrices of our system and we
         exploited this to enhance performances.
-        In fact, a rank one matrix <b>A</b> with N rows and N columns is a
+        In fact, a rank-1 matrix <b>A</b> with N rows and N columns is a
         blessing, computationally speaking, as it can be written as the multiplication
         of a column vector and a row vector.
         This means that it can be stored in 2N space, the product between
         <b>A</b> and a vector b can be performed in O(N) operations.
         Also, the matrix multiplication between two rank-1 matrices can be done
-        in O(N) and it produces, again, a rank-1 matrix.
+        in O(N) operations and it produces, again, a rank-1 matrix.
 
         <br>
         <br>
@@ -802,13 +802,13 @@
         of the calculations exploiting BLAS routines, led to a highly performant
         software for simulating our multiagents Optimal Control system.
         <br>
-        As a result, while the state-of-the-art code evoles and controls a
-        system with N = 2000 agents in <b>83 hours</b>, our code does so in a
+        As a result, while the state-of-the-art code evolves and controls a
+        system with N = 2000 agents in <b>83 hours</b>, our code does so within a
         <b>couple of minutes</b>.
         <br>
         <br>
         Thanks to these high performances we were able to study multiagent
-        systems on an unprecedented scale (up to 10 thousands agents in two
+        systems on an unprecedented scale (up to 10 thousands agents within 2
         wall-clock hours).
       </p>
       <figure>
@@ -846,7 +846,11 @@
         <small>
         <i>References:</i>
         <br>
-        []
+        [AKSZ23] G.Albi, D.Kalise, C.Segala, F.Zivcovich, Proximal gradient methods for sparse optimal control of Cucker-Smale dynamics, forthcoming article (2023).
+        <br>
+        [BBCK18] R. Bailo, M. Bongini, J.A. Carrillo, D. Kalise, Optimal consensus control of the Cucker-Smale model, IFAC-PapersOnLine, Volume 51, Issue 13, 2018, Pages 1-6
+        <br>
+        [AFK17] G. Albi, M. Fornasier, D. Kalise, A Boltzmann approach to mean-field sparse feedback control, IFAC-PapersOnLine, Volume 50, Issue 1, July 2017, Pages 2898-2903
         </small>
       </p>
     </div>
