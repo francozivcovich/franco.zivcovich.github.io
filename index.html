@@ -318,8 +318,8 @@
         When dealing with such matrices you have to be careful to what you do:
       </p>
       <ul>
-        <li>it's <b>okay</b> to multiply <b>A</b> by vectors</li>
-        <li>it's <b>NOT okay</b> to form functions of <b>A</b></li>
+        <li>it's <b style="color: green">okay</b> to multiply <b>A</b> by vectors</li>
+        <li>it's <b style="color: red">not okay</b> to form functions of <b>A</b></li>
       </ul>
       <p>
         In fact, say that <b>A</b> is the Finite Differences discretization of
@@ -327,13 +327,13 @@
         we have that
       </p>
       <ul>
-        <li>storing <b>A</b> requires about 2Mb of space</li>
-        <li>storing the <b>exponential</b> of <b>A</b> requires about 4.3Gb(!!!) of space</li>
+        <li>storing <b>A</b> requires about <span style="color: green">2Mb</span> of space</li>
+        <li>storing the <b>exponential</b> of <b>A</b> requires about <span style="color: red">4.3Gb(!!!)</span> of space</li>
       </ul>
       <p>
         Hence, similarly to when solving linear systems you never actually
-        compute the inverse of the lhs matrix, we do not form the exponential of
-        <b>&Atilde;</b> but just its <i>action</i>.
+        compute the inverse of the left hand side matrix, we do not form the
+        exponential of <b>&Atilde;</b> but just its <i>action</i>.
       </p>
 
       <p>
@@ -356,7 +356,6 @@
       </figure>
       <p>
       where the rounded x indicates the <a href="https://en.wikipedia.org/wiki/Kronecker_product">Kronecker product</a>.
-      <br>
       Now, the cool thing about matrices in this form is that their exponential
       can be written as
       </p>
@@ -378,21 +377,21 @@
       <p>
       where <b>U</b> is a <i>d</i>-dimensional tensor such that vec(<b>U</b>),
       i.e. stacking its columns one on the top of the other, equals v, and
-      the strangely subscripted cross products are called &mu;-mode products.
+      the "strangely-subscripted-cross-products" are called &mu;-mode products.
       <br>
       The &mu;-mode product takes the the <i>d</i>-dimensional tensor <b>U</b>
       and the exponential of <b>A</b><sub>&mu;</sub>,
       and it does the following serie of operations to them:
       </p>
       <ul>
-      <li>rotates  it to expose its &mu;th face;</li>
-      <li>reshapes it so that it becomes a two-dimensional matrix with n<sub>&mu;</sub> rows;</li>
+      <li>rotates <b>U</b> to expose its &mu;-th face;</li>
+      <li>reshapes <b>U</b> so that it becomes a two-dimensional matrix with n<sub>&mu;</sub> rows;</li>
       <li>multiplies the exponential of <b>A</b><sub>&mu;</sub> into it;</li>
       <li>reshapes the result back into the original form of <b>U</b>.</li>
       </ul>
       <p>
-      The above formula is nothing more than the <i>d</i>-dimensional
-      generalization of the well-known two dimensional formula
+      For reference, the above formula is nothing more than the <i>d</i>-dimensional
+      generalization of the well-known two-dimensional formula
       </p>
       <figure>
         <center>
@@ -404,14 +403,12 @@
       usually rather small and can easily be formed once and for all while the
       &mu;-mode products rely on the
       <a href="https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms#Level_3">level 3 gemm BLAS</a>
-      (Generalized Matrix Matrix product from the Basic Linear Algebra Subprograms).
-      </p>
+      (Generalized Matrix Matrix product from the Basic Linear Algebra Subprograms library).
 
-      <p>
-      In particular, we shown in
-      <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:UeHWp8X0CEIC">[CCEOZ22]</a>
-      that the performance on a GPU architeture can be so extreme that are close
-      to the theoretical limit of the hardware.
+      In particular, in
+      <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:UeHWp8X0CEIC">[CCEOZ22]</a>,
+      we shown that the performance on a GPU architeture can be so extreme that
+      it is close to the theoretical limit of the hardware.
       </p>
 
       <p>
@@ -479,7 +476,7 @@
         <li>...of each exponential integration step (maybe hundreds, thousands, or even millions)</li>
       </ul>
       <p>
-        amounting to an <b>insane</b> amount of calls to this <i>tiring</i>
+        amounting to a <b>tremendous</b> amount of calls to this <i>tiring</i>
         procedure.
         <br>
         Moreover, we noticed that, from a call to another to the Arnoldi
@@ -750,16 +747,17 @@
           </center>
         </figure>
       <p>
+        for some intricate f I won't describe here.
         At this time, from an optimization point of view, deriving q still is
         particularly challenging as standard gradient-based numerical methods
         do not suit our non-smooth cost functional.
-        To tackle this problem we had to consider a class of <b>iterative
+        To tackle this problem, we had to consider a class of <b>iterative
         proximal gradient algorithms</b>, that are extensions of the classical
         gradient method.
         <br>
         <br>
         At this point, to complete our fast implementation, a bit of numerical
-        craftiness was required: if we indicate with <b>P</b> the matrix whose
+        craftiness was in order: if we indicate with <b>P</b> the matrix whose
         (i,j) entry is P(||x<sub>i</sub>-x<sub>j</sub>||<sub>2</sub>) we can
         write in vector form
       </p>
@@ -791,10 +789,12 @@
         In fact, a rank-1 matrix <b>A</b> with N rows and N columns is a
         blessing, computationally speaking, as it can be written as the multiplication
         of a column vector and a row vector.
-        This means that it can be stored in 2N space, the product between
-        <b>A</b> and a vector b can be performed in O(N) operations.
+        This means that it can be stored in 2N space instead of N<sup>2</sup>,
+        the product between <b>A</b> and a vector b can be performed in O(N)
+        operations instead of O(N<sup>2</sup>).
         Also, the matrix multiplication between two rank-1 matrices can be done
-        in O(N) operations and it produces, again, a rank-1 matrix.
+        in O(N) operations instead of O(N<sup>3</sup>) and it produces, again,
+        a rank-1 matrix.
 
         <br>
         <br>
@@ -864,7 +864,10 @@
       <!-- <h3 id="num-lin-algebra">Numerical Linear Algebra and Arbitrary Precision arithmetic</h3> -->
 
       <p>
-        Numerical Linear Algebra is the field where I come from.
+        Numerical Linear Algebra is the field where I come from, it will always
+        have a special place inside my heart.
+        Also, there's no HPC without NLA so it better be having a special place
+        inside my brain too.
       </p>
 
 
@@ -931,15 +934,16 @@
         <br>
           In
           <a href="https://scholar.google.com/citations?view_op=view_citation&hl=it&user=oHN16zwAAAAJ&citation_for_view=oHN16zwAAAAJ:u5HHmVD_uO8C">[Z19]</a>
-          I derived a new expansion of the divided differences that allowed to
+          I derived a new expansion of the divided differences that allows to
           compute the divided differences with the same accuracy granted by the
-          Opitz algorithm but with complexity O(n<sup>2</sup>) instead of
+          Opitz algorithm but with  O(n<sup>2</sup>) complexity instead of
           O(n<sup>3</sup>).
           <br>
           <br>
-          I am extra proud of this result since in 2020 it was used by a group
-          of physicists for their Monte Carlo simulations of quantum many-body
-          systems [GBH20] (also, they called it Zivcovich's algorithm &#128540;).
+          I am extra proud of this result since in 2020 this expansion was used
+          by a group of physicists for their Monte Carlo simulations of quantum
+          many-body systems [GBH20] (and they called it Zivcovich's algorithm
+          &#128540;).
 
 
       </p>
@@ -981,21 +985,23 @@
         even knowing it.
         There are in fact examples where the exponentiation of <b>H</b><sub>m</sub>
         using routines able to reach a relative tolerance of 1e-16 (such as
-        MATLAB's expm) return highly inaccurate results (check the example at the
-        end of [CZ19, Section 6]).
+        MATLAB's expm) return highly inaccurate results (try on your own the
+        example at the end of [CZ19, Section 6]).
         <br>
         <br>
         This is because in vectorial and matricial computations, reaching a
         relative accuracy equal to machine precision does not grant an accurate
         result.
         To understand this better, consider the problem of approximating the
-        vector [M,0] with the vector [M,&epsilon;].
+        vector [M,0] by the vector [M,&epsilon;].
         The relative error in the norm induced by the scalar product equals
         &epsilon;M<sup>-1</sup>, which can <i>easily</i> get smaller than the machine
         precision.
         <br>
         <br>
-        In [CZ19], we developed a routine, exptayotf, for computing the matrix
+        In [CZ19], we developed a routine,
+        <a href="https://github.com/francozivcovich/exptayotf">exptayotf</a>,
+        for computing the matrix
         exponential that reaches unmatched levels of speed.
         Also, it is <b>the sole routine</b> able to grant relative accuracies
         smaller than machine precision both in arbitrary precision arithmetic and
@@ -1008,6 +1014,8 @@
         <i>References:</i>
         <br>
         [AMH09] A.H. Al-Mohy, N.J. Higham, A new scaling and squaring algorithm for the matrix exponential, SIAM J. Matrix Anal. Appl. 31 (3) (2009) 970–989
+        <br>
+        [FH19] M. Fasi, N.J. Higham, An arbitrary precision scaling and squaring  algorithm for the matrix exponential, SIAM J. Matrix Anal. Appl. 40 (4) (2019) 1233-1256
         <br>
         [SIRD18] J.Sastre, J. Ibáñez, E.Defez, Boosting the computation of the matrix exponential, Appl. Math. Comput., Volume 340, 1 January 2019, Pages 206-220
         <br>
